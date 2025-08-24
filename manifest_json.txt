@@ -1,0 +1,27 @@
+A manifest is a special JSON file that acts as the blueprint or configuration file for the extension.
+Tells a browser:
+    What the extension is called.
+    What version it is
+    What files it uses (like scripts, icon, html)
+    What permissions it needs
+    What pages it should run on
+
+Permissions:
+    "activeTab": Grants temporary access to the currently active tab when the user interacts with the extension (like clicking the icon).
+        Allows the extension to:
+            Read the content of the active tab
+            Inject scripts or style into it
+            Modify the page temporarily
+
+    "scripting": Gives access to the chrome.scripting API, which is how we inject JavaScript or CSS into web pages.
+
+Extension's toolbar button behavior:
+    "default_popup": When the user clicks the extension icon, popup.html will open.
+    "default_icon": The icon shown in the toolbar (16x16 pixels here).
+
+Content Script configuration:
+    "matches": Specifies which URLs the script should run on. Here, it targets all Youtube videos.
+    "js": Lists the JavaScript file(s) to inject. content.js will run on matching pages.
+
+tabCapture: to capture YoutTube audio
+background.js: needed to manage recording from the background

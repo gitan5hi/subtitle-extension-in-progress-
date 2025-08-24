@@ -1,0 +1,21 @@
+Step 1: Extract Audio from the video using ffmpeg
+    * Taking the audio out of the video and saving it as a .wav file.
+    * Because Whisper (speech-to-text tool). It doesn't need the video part.
+
+<<ffmpeg -i video_name.mp4 -ar 16000 -ac 1 output_file.wav>>   
+
+    * The -ar 16000 is to set the audio sampling rate to 16 kHz, which is Whisper's preferred format
+    * The -ac 1 is to set the number of audio channels to 1
+
+Step 2: Transcribe the Audio using Whisper CLI
+    * Listen to that audio file and write down the words it hears.
+
+<<whisper output_file.wave --language Chinese --model base --task transcribe 
+
+    * --language Chinese tells Whisper that the audio is in Chinese
+    * --model base picks the size of the AI brain (base = medium speed and accuracy)
+    * --task transcribe tells Whisper to transcribe the audio
+
+--> From this we are getting:
+    * output.srt : a subtitle file with timestamps
+    * output.txt : a text file with the transcription
